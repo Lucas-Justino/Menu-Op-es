@@ -5,12 +5,16 @@ function adicionar(lista) {
         window.alert("ID já existe!");
         return;
     }
+    if(isNaN(id)){
+        window.alert("Entrada Inválida. Digite um ID numérico")
+        return;
+    }
     let entrada = prompt("Adicionar uma tarefa:");
     if(entrada == null || entrada.trim() == ""){
         window.alert("Entrada Incorreta!")
         return;
     }
-    let tarefa = { id: id, tarefa: entrada };
+    let tarefa = { id: id.trim(), tarefa: entrada };
     lista.push(tarefa);
 }
 
@@ -36,6 +40,15 @@ function editar(lista) {
 }
 
 function mostrar(lista) {
+    lista.sort(function (a, b) {
+        if (a.id > b.id) {
+          return 1;
+        }
+        if (a.id < b.id) {
+          return -1;
+        }
+        return 0;
+      });
     if(lista.length == 0){
         console.log("Lista Vazia!")
         return;
@@ -54,6 +67,7 @@ function obterTarefa(lista) {
     let index = verificarId(lista, id);
     if (index == -1) {
         window.alert("ID não encontrado!");
+        return;
     }
     return lista[index];
 }
