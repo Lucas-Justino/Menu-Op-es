@@ -21,7 +21,7 @@ function remover(lista) {
         window.alert("ID não encontrado!");
         return lista;
     }
-    return lista.filter((element) => element.id != id);
+    lista.splice(index, 1);
 }
 
 function editar(lista) {
@@ -69,7 +69,7 @@ function escolherOpcao(op) {
             editar(lista);
             break;
         case 3:
-            lista = remover(lista);
+            remover(lista);
             break;
         case 4:
             mostrar(lista);
